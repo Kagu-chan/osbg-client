@@ -3,14 +3,15 @@
 
 This repository is the client repository for [osuBeatmapGrabber](https://osu.ppy.sh/forum/t/399719).
 
-The Client (**Version Key `c'**) is the tool users using locally.
+The Client (Version Key c) is the tool users using locally. Current release is **c0.4**
 
-### Other packages:
-* [Old Client]()
-* [API Server]()
-* [APP Server]()
-* [Stream Server]()
-* [Web Server]()
+### All packages in this project:
+* [Client](https://github.com/Kagurame/osbg-client)
+* [Old Client](https://github.com/Kagurame/osbg-client-old)
+* [API Server](https://github.com/Kagurame/osbg-server-api)
+* [APP Server](https://github.com/Kagurame/osbg-server-app)
+* [Stream Server](https://github.com/Kagurame/osbg-server-stream)
+* [Web Server](https://github.com/Kagurame/osbg-server-web)
 
 ### Dependecies:
 * .net Framework 4.0 (normally include in windows 8 or higher, easy install on windows 7)
