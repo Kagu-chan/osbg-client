@@ -1,0 +1,43 @@
+app/
+	shared/
+		sidebar/
+			sidebarDirective.js
+			sidebarView.html
+		article/
+			articleDirective.js
+			articleView.html
+		...
+	components/
+		home/
+			homeController.js
+			homeService.js
+			homeView.html
+		blog/
+			blogController.js
+			blogService.js
+			blogView.html
+		...
+	core
+		header
+			headerController.js
+			headerService.js
+			headerView.html
+		footer
+			footerController.js
+			footerService.js
+			footerView.html
+		...
+	app.module.js
+	app.routes.js
+assets/
+	img/
+	css/
+	js/
+		electron.js		// Bootstrap the app
+		loadDeps.js			// Load all components
+	libs/
+	sass/
+node_modules
+	...
+index.html
+package.json

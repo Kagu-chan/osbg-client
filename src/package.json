@@ -1,0 +1,37 @@
+{
+  "name": "osbg-client",
+  "version": "0.0.1",
+  "description": "osu!beatmap-grabber client package",
+  "scripts": {
+    "test": "./node_modules/.bin/electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kagurame/osbg-client.git"
+  },
+  "keywords": [
+    "osu",
+    "beatmap",
+    "grabber",
+    "kagu-chan",
+    "osbg",
+    "kcsoft"
+  ],
+  "author": "ksSoft",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Kagurame/osbg-client/issues"
+  },
+  "homepage": "https://github.com/Kagurame/osbg-client#readme",
+  "dependencies": {
+    "angular": "^1.5.7",
+    "angular-animate": "^1.5.7",
+    "angular-aria": "^1.5.7",
+    "angular-material": "^1.1.0-rc.5",
+    "angular-messages": "^1.5.7",
+    "angular-route": "^1.5.7",
+    "angular-sanitize": "^1.5.7",
+    "electron-prebuilt": "^1.2.7",
+    "jquery": "^3.1.0"
+  }
+}
