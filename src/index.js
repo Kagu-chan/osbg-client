@@ -1,6 +1,3 @@
-
-
-
 const electron = require("electron");
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
@@ -13,6 +10,8 @@ function createWindow(){
   win.on('closed', () => {
     win = null;
   });
+
+  win.webContents.openDevTools();
 }
 
 app.on('ready', createWindow);
