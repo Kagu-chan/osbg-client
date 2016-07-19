@@ -19,6 +19,7 @@
   ],
   "author": "ksSoft",
   "license": "GPL-3.0",
+  "readme": "../README.md",
   "bugs": {
     "url": "https://github.com/Kagurame/osbg-client/issues"
   },
