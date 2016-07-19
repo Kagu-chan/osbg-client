@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" ng-app="osbgApp">
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,8 +8,14 @@
 		<link rel="stylesheet" type="text/css" href="assets/css/main.css">
 	</head>
 	<body>
+		<header ng-controller="HeaderController" ng-class="header">
+			{{test}}
+		</header>
 		HELLO WORLD!
-
+		<input type="checkbox" ng-disabled="{{true}}" />
 		<script>require('./assets/js/loadDeps.js')</script>
+		<footer ng-controller="FooterController" ng-class="footer">
+			{{test}}
+		</footer>
 	</body>
 </html>
