@@ -1,8 +1,55 @@
 @import reset
 @import variables
 
+.default-font
+	font: 100% $font
+	color: $primary-color
 
+section.container
+	background-color: $color-body
+	box-shadow: $shadow-body
+	position: absolute
+	top: 128px
+	bottom: 128px
+	overflow: auto
 
-body
-  font: 100% $font
-  color: $primary-color
+	.content
+		@extend .default-font
+
+header
+	@extend .default-font
+	background: $color-header
+	height: 128px
+	left: 0
+	right: 0
+	top: 0
+	position: fixed
+
+footer
+	@extend .default-font
+	background: $color-footer
+	height: 128px
+	left: 0
+	right: 0
+	bottom: 0
+	position: fixed
+
+.triangles
+	width: 100%
+	height: 100%
+	position: absolute
+	background-repeat: repeat
+	opacity: .1
+
+#triangles
+	.triangles-1
+		@extend .triangles
+		background-image: url(../img/triangles-1.png)
+
+	.triangles-2
+		@extend .triangles
+		background-image: url(../img/triangles-2.png)
+
+	.triangles-3
+		@extend .triangles
+		background-image: url(../img/triangles-3.png)
