@@ -1,0 +1,19 @@
+partial-default-font
+    font: 100% $font
+    color: $primary-color
+
+partial-header-footer
+    @extend partial-default-font
+    height: $header-footer-height
+    min-height: $header-footer-min
+    max-height: $header-footer-max
+    left: 0
+    right: 0
+    position: fixed
+
+partial-triangles
+    width: 100%
+    height: 100%
+    position: absolute
+    background-repeat: repeat
+    opacity: .1
