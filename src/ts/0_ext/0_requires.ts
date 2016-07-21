@@ -1,4 +1,4 @@
-require('jquery');
+window["$"] = window["jQuery"] = $ = jQuery = require('jquery');
 require("angular");
 require("angular-animate");
 require("angular-aria");
