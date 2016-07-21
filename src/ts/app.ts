@@ -6,3 +6,6 @@
 /// <reference path="def/angular-material.d.ts" />
 /// <reference path="def/angular-route.d.ts" />
 /// <reference path="def/angular-sanitize.d.ts" />
+
+const
+    $templatesPath: string = "./assets/templates/";
