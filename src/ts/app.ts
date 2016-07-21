@@ -8,4 +8,5 @@
 /// <reference path="def/angular-sanitize.d.ts" />
 
 const
-    $templatesPath: string = "./assets/templates/";
+    $directorySeperator: string = "/",
+    $templatesPath: string = "./assets/templates";
