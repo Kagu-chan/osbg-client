@@ -1,0 +1,26 @@
+{
+  "name": "osbg-client",
+  "version": "0.0.1",
+  "description": "osu!beatmap-grabber client package",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kagurame/osbg-client.git"
+  },
+  "keywords": [
+    "osu",
+    "beatmap",
+    "grabber",
+    "kagu-chan",
+    "osbg",
+    "kcsoft"
+  ],
+  "author": "ksSoft",
+  "license": "GPL-3.0",
+  "readme": "../../README.md",
+  "bugs": {
+    "url": "https://github.com/Kagurame/osbg-client/issues"
+  },
+  "homepage": "https://github.com/Kagurame/osbg-client#readme",
+
+  "main": "main.js"
+}

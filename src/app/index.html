@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="osbgApp">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>TEST</title>
+
+		<link rel="stylesheet" type="text/css" href="build/main.css">
+	</head>
+	<body>
+		<div id="triangles">
+			<div class="triangles-1"></div>
+			<div class="triangles-2"></div>
+			<div class="triangles-3"></div>
+		</div>
+		<header ng-controller="HeaderController" ng-class="header">
+			{{test}}
+		</header>
+		<section class="container">
+			<div class="content">
+				CONTENT   
+			</div>
+		</section>
+		<footer ng-controller="FooterController" ng-class="footer">
+			{{test}}
+		</footer>
+        <script src="build/app.js"></script>
+	</body>
+</html>
