@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace kcUpdater.Interfaces
+namespace Osu_Beatmap_Grabber.Updater.Interfaces
 {
     /// <summary>
     /// generic interface for updatehandler classes

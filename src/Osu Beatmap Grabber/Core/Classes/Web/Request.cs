@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 using System.Net;
 using System.IO;
 
-namespace kcUpdater.Classes
+using Osu_Beatmap_Grabber.Core.Classes;
+
+namespace Osu_Beatmap_Grabber.Core.Classes.Web
 {
     /// <summary>
     /// handle simple web requests
     /// </summary>
-    internal class WebRequest
+    internal class Request
     {
         /// <summary>
         /// default timeout for web requests
@@ -49,7 +51,7 @@ namespace kcUpdater.Classes
             } catch (WebException ex)
             {
                 _lastResponse = null;
-                throw new Exceptions.WebRequestFailedException(ex.Message, ex.InnerException);
+                throw new Osu_Beatmap_Grabber.Updater.Exceptions.WebRequestFailedException(ex.Message, ex.InnerException);
             }
         }
 
@@ -120,13 +122,13 @@ namespace kcUpdater.Classes
             {
                 using (StreamWriter streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
                 {
-                    JsonObject.Instance.WriteToStream(streamWriter, obj);
+                    IO.JsonObject.Instance.WriteToStream(streamWriter, obj);
                 }
                 _lastResponse = httpWebRequest.GetResponse();
             }
             catch (WebException ex)
             {
-                throw new Exceptions.WebRequestFailedException(ex.Message, ex.InnerException);
+                throw new Osu_Beatmap_Grabber.Updater.Exceptions.WebRequestFailedException(ex.Message, ex.InnerException);
             }
         }
 

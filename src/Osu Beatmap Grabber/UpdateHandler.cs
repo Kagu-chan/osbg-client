@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using kcUpdater;
-using kcUpdater.Enums;
+using Osu_Beatmap_Grabber;
+using Osu_Beatmap_Grabber.Updater;
+using Osu_Beatmap_Grabber.Updater.Enums;
+using Osu_Beatmap_Grabber.Updater.Structures;
 
 using System.IO;
-using kcUpdater.Structures;
 
 namespace Osu_Beatmap_Grabber
 {
@@ -42,7 +43,7 @@ namespace Osu_Beatmap_Grabber
 
     public class UpdatingEventArgs : EventArgs {}
 
-    class UpdateHandler : kcUpdater.Handler.UpdaterBase
+    class UpdateHandler : Osu_Beatmap_Grabber.Updater.Handler.UpdaterBase
     {
         private string _lastMessage = string.Empty;
         public string LastMessage { get { return _lastMessage; } }
@@ -79,9 +80,9 @@ namespace Osu_Beatmap_Grabber
             StartUpdateProcess = OnStartUpdateProcess;
             ExitUpdateProcess = OnExitUpdateProcess;
 
-            kcUpdater.Classes.WebDownloader.Instance.BeginDownload = OnBeginDownload;
-            kcUpdater.Classes.WebDownloader.Instance.UpdateDownload = OnUpdateDownload;
-            kcUpdater.Classes.WebDownloader.Instance.EndDownload = OnEndDownload;
+            Osu_Beatmap_Grabber.Core.Classes.Web.Downloader.Instance.BeginDownload = OnBeginDownload;
+            Osu_Beatmap_Grabber.Core.Classes.Web.Downloader.Instance.UpdateDownload = OnUpdateDownload;
+            Osu_Beatmap_Grabber.Core.Classes.Web.Downloader.Instance.EndDownload = OnEndDownload;
         }
 
         public override void DisplayMessage(HandlerMessageSeverity severity, string message)
@@ -112,7 +113,7 @@ namespace Osu_Beatmap_Grabber
             double progress = (double) (CurrentIndex - 1) / _lastResponse.Files.Count;
             double range = 1.0 / _lastResponse.Files.Count;
 
-            double currentPerc = (double) kcUpdater.Classes.WebDownloader.Instance.CurrentBytes / CurrentBytes;
+            double currentPerc = (double)Osu_Beatmap_Grabber.Core.Classes.Web.Downloader.Instance.CurrentBytes / CurrentBytes;
             double addition = range * currentPerc;
 
             _percent = progress + addition;
@@ -124,8 +125,8 @@ namespace Osu_Beatmap_Grabber
             LastFile = Path.GetFileName(file);
             DisplayMessage(HandlerMessageSeverity.Trace, "Start downloading file - " + LastFile);
 
-            CurrentIndex = kcUpdater.Classes.WebDownloader.Instance.FileNumber;
-            CurrentBytes = kcUpdater.Classes.WebDownloader.Instance.CurrentDownloadLength;
+            CurrentIndex = Osu_Beatmap_Grabber.Core.Classes.Web.Downloader.Instance.FileNumber;
+            CurrentBytes = Osu_Beatmap_Grabber.Core.Classes.Web.Downloader.Instance.CurrentDownloadLength;
             UpdateProgress();
         }
 

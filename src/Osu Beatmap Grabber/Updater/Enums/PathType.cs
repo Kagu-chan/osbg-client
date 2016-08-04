@@ -1,4 +1,4 @@
-﻿namespace kcUpdater.Enums
+﻿namespace Osu_Beatmap_Grabber.Updater.Enums
 {
     public enum PathType : byte
     {

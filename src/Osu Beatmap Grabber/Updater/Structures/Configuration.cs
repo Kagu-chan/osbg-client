@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 
-namespace kcUpdater.Structures
+namespace Osu_Beatmap_Grabber.Updater.Structures
 {
     /// <summary>
     /// represents the updater configuration itself

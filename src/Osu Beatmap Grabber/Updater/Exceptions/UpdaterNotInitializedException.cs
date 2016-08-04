@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace kcUpdater.Exceptions
+namespace Osu_Beatmap_Grabber.Updater.Exceptions
 {
     class UpdaterNotInitializedException : Exception
     {

@@ -53,7 +53,7 @@ namespace Osu_Beatmap_Grabber
 
             System.Threading.Thread.Sleep(1000);
 
-            kcUpdater.Structures.Configuration config = new kcUpdater.Structures.Configuration();
+            Osu_Beatmap_Grabber.Updater.Structures.Configuration config = new Osu_Beatmap_Grabber.Updater.Structures.Configuration();
             config.AutoUpdate = true;
             config.CurrentVersion = "0";
             config.Domain = new Uri("http://sources.kagu-chan.de");
@@ -63,7 +63,7 @@ namespace Osu_Beatmap_Grabber
 
             string updateConfig = System.IO.Path.Combine(_appPath, "_kcConfig.json");
 
-            kcUpdater.Classes.Updater.Instance.Init(config, updateConfig);
+            Osu_Beatmap_Grabber.Updater.Classes.Updater.Instance.Init(config, updateConfig);
 
             InitAppIcon();
 
@@ -75,7 +75,7 @@ namespace Osu_Beatmap_Grabber
             _updater.TargetDirectory = _appPath;
             _updater.UpdateDirectory = config.UpdateDirectory;
 
-            kcUpdater.Classes.Updater.Instance.ProcessUpdate(_updater, false);
+            Osu_Beatmap_Grabber.Updater.Classes.Updater.Instance.ProcessUpdate(_updater, false);
         }
 
         private void InitAppIcon()
@@ -84,7 +84,7 @@ namespace Osu_Beatmap_Grabber
             if (appPath == _appPath) return;
 
             string lnkFileName = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Osu Beatmap Grabber.lnk");
-            Shortcut.Create(lnkFileName,
+            Osu_Beatmap_Grabber.Core.LinkFile.Create(lnkFileName,
                 System.IO.Path.Combine(_appPath, "Osu Beatmap Grabber.exe"),
                 null, null, "Open osu!BeatmapGrabber", "", System.IO.Path.Combine(_appPath, "osbg.ico"));
         }

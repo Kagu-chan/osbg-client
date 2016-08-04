@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace kcUpdater.Structures
+namespace Osu_Beatmap_Grabber.Updater.Structures
 {
     public struct APIResponse
     {

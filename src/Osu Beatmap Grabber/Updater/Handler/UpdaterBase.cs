@@ -4,11 +4,11 @@ using System.Linq;
 using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
-using kcUpdater.Structures;
+using Osu_Beatmap_Grabber.Updater.Structures;
 using System.IO;
-using kcUpdater.Interfaces;
+using Osu_Beatmap_Grabber.Updater.Interfaces;
 
-namespace kcUpdater.Handler
+namespace Osu_Beatmap_Grabber.Updater.Handler
 {
     /// <summary>
     /// abstract updatehandler base class
@@ -34,7 +34,7 @@ namespace kcUpdater.Handler
             if (StartUpdateProcess != null) StartUpdateProcess.Invoke();
             DisplayMessage(Enums.HandlerMessageSeverity.Trace, "Get Project Information");
 
-            _lastResponse = Classes.JsonObject.Instance.ReadWebObject<APIResponse>(configuration.Path(Enums.PathType.Project));
+            _lastResponse = Osu_Beatmap_Grabber.Core.Classes.IO.JsonObject.Instance.ReadWebObject<APIResponse>(configuration.Path(Enums.PathType.Project));
             if (_lastResponse.Equals(null) || !_lastResponse.Success)
             {
                 DisplayMessage(Enums.HandlerMessageSeverity.Warning, "Failed to load Project Informations");
@@ -74,7 +74,7 @@ namespace kcUpdater.Handler
         {
             DisplayMessage(Enums.HandlerMessageSeverity.Trace, "Retrive versions file list");
 
-            _lastResponse = Classes.JsonObject.Instance.ReadWebObject<APIResponse>(configuration.Path(Enums.PathType.Version, _lastResponse.Version));
+            _lastResponse = Osu_Beatmap_Grabber.Core.Classes.IO.JsonObject.Instance.ReadWebObject<APIResponse>(configuration.Path(Enums.PathType.Version, _lastResponse.Version));
             if (_lastResponse.Equals(null) || !_lastResponse.Success)
             {
                 DisplayMessage(Enums.HandlerMessageSeverity.Error, "Failed to load file list from server");
@@ -96,11 +96,12 @@ namespace kcUpdater.Handler
             foreach (KeyValuePair<string, string> item in _lastResponse.Files)
             {
                 Uri source = configuration.Path(Enums.PathType.File, _lastResponse.Version, item.Key);
-                Classes.WebDownloader.Instance.AddDownloadFile(source, Path.Combine(configuration.UpdateDirectory, item.Value));
+                Osu_Beatmap_Grabber.Core.Classes.Web.Downloader.Instance.AddDownloadFile(source, Path.Combine(configuration.UpdateDirectory, item.Value));
             }
-            Classes.WebDownloader.Instance.DownloadQueue();
+            Osu_Beatmap_Grabber.Core.Classes.Web.Downloader.Instance.DownloadQueue();
 
-            while (Classes.WebDownloader.downloadQueue.Count != 0) { 
+            while (Osu_Beatmap_Grabber.Core.Classes.Web.Downloader.downloadQueue.Count != 0)
+            { 
                 //NOP - Wait for download complete!
             }
             return true;

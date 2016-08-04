@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Net;
 
-namespace kcUpdater.Classes
+namespace Osu_Beatmap_Grabber.Core.Classes.Web
 {
-    public class WebDownloader
+    public class Downloader
     {
-        private static readonly Lazy<WebDownloader> lazy = new Lazy<WebDownloader>(() => new WebDownloader());
+        private static readonly Lazy<Downloader> lazy = new Lazy<Downloader>(() => new Downloader());
 
         /// <summary>
         /// Returns the Instance of this class
         /// </summary>
-        public static WebDownloader Instance { get { return lazy.Value; } }
+        public static Downloader Instance { get { return lazy.Value; } }
         public static Dictionary<Uri, string> downloadQueue;
 
         public bool Downloading;
@@ -36,7 +36,7 @@ namespace kcUpdater.Classes
         /// <summary>
         /// Make the constructor private!
         /// </summary>
-        private WebDownloader()
+        private Downloader()
         {
             Downloading = false;
             downloadQueue = new Dictionary<Uri, string>();
@@ -56,7 +56,6 @@ namespace kcUpdater.Classes
 
         public void DownloadFile(Uri source, string target)
         {
-            //while (Downloading) { } //NOP - wait for current download to finnish
             string dir = Path.GetDirectoryName(target);
             while (!Directory.Exists(dir)) { Directory.CreateDirectory(dir); }
 
@@ -77,7 +76,7 @@ namespace kcUpdater.Classes
                 _response = (HttpWebResponse)_request.EndGetResponse(async);
             } catch (Exception ex)
             {
-                throw ex; // TODO: Find out which exception throws here - literaly a WebException - catch and throw own exception
+                throw ex;
             }
 
             CurrentDownloadLength = (int)_response.ContentLength;

@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace kcUpdater.Classes {
+namespace Osu_Beatmap_Grabber.Updater.Classes
+{
 
     /// <summary>
     /// Updater Controlling Class
@@ -44,7 +45,7 @@ namespace kcUpdater.Classes {
         /// </summary>
         public void Init()
         {
-            Configurator.Instance.CheckOrCreateDefaultConfiguration(_defaultConfigurationName, _defaultConfiguration);
+            Osu_Beatmap_Grabber.Core.Classes.IO.JsonFile.Instance.ExistsOrCreateDefault(_defaultConfigurationName, _defaultConfiguration);
 
             _initialized = true;
         }
@@ -88,7 +89,7 @@ namespace kcUpdater.Classes {
         public Structures.Configuration Configuration()
         {
             if (!_initialized) throw new Exceptions.UpdaterNotInitializedException();
-            return Configurator.Instance.ReadConfiguration<Structures.Configuration>(_defaultConfigurationName);
+            return Osu_Beatmap_Grabber.Core.Classes.IO.JsonFile.Instance.Read<Structures.Configuration>(_defaultConfigurationName);
         }
 
         /// <summary>
@@ -99,8 +100,8 @@ namespace kcUpdater.Classes {
         public Structures.Configuration Configuration(Structures.Configuration configuration)
         {
             if (!_initialized) throw new Exceptions.UpdaterNotInitializedException();
-            Configurator.Instance.WriteConfiguration(configuration, _defaultConfigurationName);
-            return Configurator.Instance.ReadConfiguration<Structures.Configuration>(_defaultConfigurationName);
+            Osu_Beatmap_Grabber.Core.Classes.IO.JsonFile.Instance.Write(configuration, _defaultConfigurationName);
+            return Osu_Beatmap_Grabber.Core.Classes.IO.JsonFile.Instance.Read<Structures.Configuration>(_defaultConfigurationName);
         }
 
         /// <summary>
@@ -134,7 +135,7 @@ namespace kcUpdater.Classes {
             if (!handler.RehashDownload(configuration)) return false;
             if (!handler.DownloadUpdate(configuration)) return false;
 
-            while (WebDownloader.Instance.Downloading) { }
+            while (Osu_Beatmap_Grabber.Core.Classes.Web.Downloader.Instance.Downloading) { }
 
             if (!handler.RehashUpdate(configuration, _defaultConfigurationName)) return false;
 

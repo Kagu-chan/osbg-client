@@ -3,7 +3,7 @@ using System.IO;
 using System.Net;
 using Newtonsoft.Json;
 
-namespace kcUpdater.Classes
+namespace Osu_Beatmap_Grabber.Core.Classes.IO
 {
     /// <summary>
     /// convert objects into JSON strings and vice versa
@@ -29,18 +29,12 @@ namespace kcUpdater.Classes
         /// <param name="obj">object to parse</param>
         public void WriteToStream(StreamWriter streamWriter, object obj)
         {
-            try
+            using (JsonTextWriter jsonWriter = new JsonTextWriter(streamWriter))
             {
-                using (JsonTextWriter jsonWriter = new JsonTextWriter(streamWriter))
-                {
-                    JsonSerializer serializer = new JsonSerializer();
+                JsonSerializer serializer = new JsonSerializer();
 
-                    jsonWriter.Formatting = Formatting.Indented;
-                    serializer.Serialize(jsonWriter, obj);
-                }
-            } catch (JsonSerializationException ex)
-            {
-                throw new Exceptions.JsonConversionFailedException(ex.Message, ex.InnerException);
+                jsonWriter.Formatting = Formatting.Indented;
+                serializer.Serialize(jsonWriter, obj);
             }
         }
 
@@ -69,24 +63,17 @@ namespace kcUpdater.Classes
         /// <returns></returns>
         public T ReadObject<T>(string readFrom)
         {
-            try
+            using (FileStream fileStream = File.Open(readFrom, FileMode.Open))
             {
-                using (FileStream fileStream = File.Open(readFrom, FileMode.Open))
+                using (StreamReader streamReader = new StreamReader(fileStream))
                 {
-                    using (StreamReader streamReader = new StreamReader(fileStream))
+                    using (JsonTextReader jsonReader = new JsonTextReader(streamReader))
                     {
-                        using (JsonTextReader jsonReader = new JsonTextReader(streamReader))
-                        {
-                            JsonSerializer serializer = new JsonSerializer();
+                        JsonSerializer serializer = new JsonSerializer();
 
-                            return serializer.Deserialize<T>(jsonReader);
-                        }
+                        return serializer.Deserialize<T>(jsonReader);
                     }
                 }
-            }
-            catch (JsonSerializationException ex)
-            {
-                throw new Exceptions.JsonConversionFailedException(ex.Message, ex.InnerException);
             }
         }
 
@@ -98,17 +85,10 @@ namespace kcUpdater.Classes
         /// <returns></returns>
         public T ReadWebObject<T>(string uri)
         {
-            WebRequest.Request(uri);
-            if (WebRequest.LastRequestSucceed())
+            Web.Request.Request(uri);
+            if (Web.Request.LastRequestSucceed())
             {
-                string response = WebRequest.LastContent();
-                try
-                {
-                    return JsonConvert.DeserializeObject<T>(response);
-                } catch (JsonSerializationException ex)
-                {
-                    throw new Exceptions.JsonConversionFailedException(ex.Message, ex.InnerException);
-                }
+                return JsonConvert.DeserializeObject<T>(Web.Request.LastContent());
             } else return default(T);
         }
 
